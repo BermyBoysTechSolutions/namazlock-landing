@@ -20,7 +20,8 @@ import {
 } from 'lucide-react'
 
 const SITE_URL = 'https://www.namazlock.com'
-const SUPPORT_EMAIL = [CONTACT_REMOVED]'
+const SUPPORT_EMAIL = import.meta.env.VITE_SUPPORT_EMAIL?.trim() || ''
+const SUPPORT_LINK = SUPPORT_EMAIL ? `mailto:${SUPPORT_EMAIL}` : '/support'
 
 const screens = [
   { src: '/screens/prayer.png', label: 'Prayer times', className: 'screen-prayer' },
@@ -146,7 +147,7 @@ function Footer() {
         <div className="footer-links">
           <a href="/privacy">Privacy</a>
           <a href="/support">Support</a>
-          <a href={`mailto:${SUPPORT_EMAIL}`}>Contact</a>
+          <a href={SUPPORT_LINK}>Contact</a>
         </div>
         <p>© 2026 NamazLock. Built for salah.</p>
       </div>
@@ -308,7 +309,7 @@ function FinalCTA() {
         <h2>Make room for salah.</h2>
         <p>NamazLock is being prepared for the App Store. Questions, accessibility needs, and feedback are welcome.</p>
       </div>
-      <a className="button button-gold" href={`mailto:${SUPPORT_EMAIL}`}>Contact support <Mail size={18} /></a>
+      <a className="button button-gold" href={SUPPORT_LINK}>Contact support <Mail size={18} /></a>
     </section>
   )
 }
@@ -409,7 +410,7 @@ function PrivacyPage() {
       </section>
       <section>
         <h2>Contact</h2>
-        <p>Questions or privacy requests can be sent to <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</p>
+        <p>Questions or privacy requests can be submitted through the <a href="/support">Support page</a>.</p>
       </section>
     </PolicyLayout>
   )
@@ -426,15 +427,17 @@ function SupportPage() {
     <PolicyLayout
       eyebrow="NamazLock support"
       title="How can we help?"
-      intro="Start with the steps below or email us directly. Include your iOS version and what you expected to happen, but never send sensitive personal information."
+      intro="Start with the steps below. Include your iOS version and what you expected to happen, but never send sensitive personal information."
     >
+      {SUPPORT_EMAIL && (
       <section className="support-contact">
         <div>
           <Mail size={24} />
           <div><h2>Email support</h2><p>For product help, accessibility feedback, or privacy questions.</p></div>
         </div>
-        <a className="button button-gold" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}<ExternalLink size={16} /></a>
+        <a className="button button-gold" href={SUPPORT_LINK}>{SUPPORT_EMAIL}<ExternalLink size={16} /></a>
       </section>
+      )}
       <section>
         <h2>Screen Time access or app selection</h2>
         <ol>
@@ -465,10 +468,12 @@ function SupportPage() {
         <h2>Delete app data</h2>
         <p>Prayer history and settings are stored locally. Use available reset controls in the app, revoke permissions in iOS Settings, or delete NamazLock to remove its locally stored data from the device.</p>
       </section>
+      {SUPPORT_EMAIL && (
       <section>
         <h2>Contact</h2>
-        <p>Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>. We aim to respond as soon as practical.</p>
+        <p>Email <a href={SUPPORT_LINK}>{SUPPORT_EMAIL}</a>. We aim to respond as soon as practical.</p>
       </section>
+      )}
     </PolicyLayout>
   )
 }
