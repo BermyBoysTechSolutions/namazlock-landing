@@ -175,7 +175,7 @@ export default function WaitlistModal({ isOpen, onClose }) {
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="[CONTACT_REMOVED]"
+                          placeholder="Email address"
                           className="w-full px-4 py-3.5 rounded-xl text-sm text-white placeholder:text-white/25 outline-none transition-all duration-300"
                           style={{
                             background: 'rgba(255,255,255,0.04)',
@@ -198,7 +198,7 @@ export default function WaitlistModal({ isOpen, onClose }) {
                           type="tel"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          placeholder="[CONTACT_REMOVED]"
+                          placeholder="Phone number"
                           className="w-full px-4 py-3.5 rounded-xl text-sm text-white placeholder:text-white/25 outline-none transition-all duration-300"
                           style={{
                             background: 'rgba(255,255,255,0.04)',
